@@ -1,4 +1,6 @@
 // lesson-01
+
+/*
 const loadQuoe = () => {
     fetch('https://api.kanye.rest/')
         .then(res => res.json())
@@ -8,11 +10,13 @@ const displayQuote = quote => {
     console.log(quote.quote)
     const quoteElement = document.getElementById('quote')
     quoteElement.innerText = quote.quote
-}
+} */
 
 
 
 // lesson - 02
+
+/*
 const loadJasim = () => {
     fetch('https://randomuser.me/api/?results=5')
         .then(res => res.json())
@@ -37,6 +41,33 @@ const displayJasim = saw => {
 
     }
 
+}
+ */
+// lesson-03
+
+const loadCountries = () => {
+    fetch('https://restcountries.eu/rest/v2/all')
+        .then(res => res.json())
+        .then(data => displayContaries(data))
+}
+loadCountries()
+
+const displayContaries = contries => {
+    // console.log(contries)
+    // ফর লোপ দুই ভাবে করা যায় যেমন for(of), arrow function er parameter and dote korea forEach
+    const divContent = document.getElementById('countries')
+    contries.forEach(contry => {
+        // console.log(contry)
+        const div = document.createElement('div')
+        div.classList.add('contry')
+        const h3 = document.createElement('h3')
+        const p = document.createElement('p')
+        h3.innerText = contry.name;
+        div.appendChild(h3);
+        p.innerText = contry.capital;
+        div.appendChild(p);
+        divContent.appendChild(div)
+    })
 }
 
 
