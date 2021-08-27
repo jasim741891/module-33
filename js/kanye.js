@@ -43,6 +43,7 @@ const displayJasim = saw => {
 
 }
  */
+
 // lesson-03
 
 const loadCountries = () => {
@@ -60,14 +61,36 @@ const displayContaries = contries => {
         // console.log(contry)
         const div = document.createElement('div')
         div.classList.add('contry')
-        const h3 = document.createElement('h3')
-        const p = document.createElement('p')
-        h3.innerText = contry.name;
-        div.appendChild(h3);
-        p.innerText = contry.capital;
-        div.appendChild(p);
+        div.innerHTML = `<h3>${contry.name}</h3>
+        <p>${contry.capital}</p>
+        <button onclick="loadCountryByName('${contry.name}')">Detials</button>
+        `
+        // const h3 = document.createElement('h3')
+        // const p = document.createElement('p')
+        // h3.innerText = contry.name;
+        // div.appendChild(h3);
+        // p.innerText = contry.capital;
+        // div.appendChild(p);
         divContent.appendChild(div)
     })
+}
+const loadCountryByName = name => {
+    // console.log(name)
+    const url = `https://restcountries.eu/rest/v2/name/${name}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayCountryDetail(data[0]))
+}
+const displayCountryDetail = country => {
+    console.log(country)
+    const countriesDetails = document.getElementById('countries-details');
+    countriesDetails.innerHTML = `
+    <h4>${country.name}</h4>
+    <p>population:${country.population}</p>
+    <img width="200px" src="${country.flag}">
+   
+
+    `
 }
 
 
