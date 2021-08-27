@@ -10,23 +10,33 @@ const displayQuote = quote => {
     quoteElement.innerText = quote.quote
 }
 
-// lesson - 02
 
-const loadBuddys = () => {
+
+// lesson - 02
+const loadJasim = () => {
     fetch('https://randomuser.me/api/?results=5')
         .then(res => res.json())
-        .then(data => displayBuddy(data))
+        .then(data => displayJasim(data))
 }
-loadBuddys()
+loadJasim()
 
-const displayBuddy = jamalas => {
-    const jasimData = jamalas.results
-    const div = document.getElementById('body')
-    for (const jamala of jasimData) {
+const displayJasim = saw => {
+    // console.log(saw.results)
+    const bodys = saw.results;
+    // রাখার জায়গা connenet
+    const divContainer = document.getElementById('main');
+    for (const body of bodys) {
+        // console.log(body.email) / দেখানোর জন্য ইলিমেন্ট তরি
         const p = document.createElement('p')
-        p.innerText = `name: ${jamala.name.title} ${jamala.name.first} ${jamala.name.last
-            } `
-        div.appendChild(p)
+        //এই টেক্স  কি প্রকিতির এবং ফরলোপের ভেরিয়েবল নিয়ে ডট এবং এরো থেকে কি চাই
+        p.innerText = `name: ${body.name.title} ${body.name.first} ${body.name.last}  Email: ${body.email}
+    
+    `
+        // এরপর কিয়েট করা পেরাগেরাপ এপেন্ট করতে হবে আইডি যেখানে আছে তার ভেরিয়েবল ডট করে  
+        divContainer.appendChild(p);
+
     }
+
 }
+
 
