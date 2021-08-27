@@ -43,10 +43,10 @@ const displayJasim = saw => {
 
 }
  */
-
 // lesson-03
 
-const loadCountries = () => {
+/**
+ const loadCountries = () => {
     fetch('https://restcountries.eu/rest/v2/all')
         .then(res => res.json())
         .then(data => displayContaries(data))
@@ -87,10 +87,45 @@ const displayCountryDetail = country => {
     countriesDetails.innerHTML = `
     <h4>${country.name}</h4>
     <p>population:${country.population}</p>
-    <img width="200px" src="${country.flag}">
+    <img width src="${country.flag}">
    
 
     `
+}
+ */
+
+// lesson-5
+const searchFood = () => {
+    const searchField = document.getElementById('search-field');
+    const searchText = searchField.value;
+    // console.log(searchText);
+    searchField.value = '';
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
+    // console.log(url)
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayMeals(data.meals))
+
+}
+const displayMeals = meals => {
+    // console.log(meals)
+    const searchReuslt = document.getElementById('search-result');
+    meals.forEach(meal => {
+        console.log(meal)
+        const div = document.createElement('div');
+        div.classList.add('col');
+        div.innerHTML = `
+    <div class="card">
+            <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">${meal.strMeal}</h5>
+            <p class="card-text">${meal.strInstructions.slice(0, 200)}</p>
+        </div>
+    </div>
+     `;
+        searchReuslt.appendChild(div)
+
+    });
 }
 
 
